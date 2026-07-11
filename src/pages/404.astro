@@ -9,7 +9,7 @@ import Footer from '../components/Footer.astro';
   <main>
     <section class="not-found">
       <p class="code">404</p>
-      <h1>Page not found</h1>
+      <h1 class="gradient-text">Page not found</h1>
       <a class="cta" href="/">Go back home</a>
     </section>
   </main>
@@ -33,19 +33,38 @@ import Footer from '../components/Footer.astro';
 
   h1 {
     margin: 0 0 2rem;
+    font-size: clamp(1.8rem, 6vw, 2.75rem);
   }
 
   .cta {
+    position: relative;
     display: inline-block;
     padding: 1rem 1.75rem;
     border: 1px solid var(--accent);
-    border-radius: 4px;
-    color: var(--accent);
+    border-radius: 6px;
+    color: var(--text-bright);
     font-family: var(--font-mono);
     font-size: 0.9rem;
+    overflow: hidden;
+    z-index: 0;
+    transition: border-color 0.35s var(--ease);
+  }
+
+  .cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gradient);
+    transform: translateX(-101%);
+    transition: transform 0.35s var(--ease);
+    z-index: -1;
   }
 
   .cta:hover {
-    background: var(--accent-dim);
+    border-color: transparent;
+  }
+
+  .cta:hover::before {
+    transform: translateX(0);
   }
 </style>

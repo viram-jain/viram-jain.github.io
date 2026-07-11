@@ -5,6 +5,17 @@ import ThemeToggle from './ThemeToggle.astro';
 
 <header class="header">
   <a href="/" class="logo">VJ</a>
+  <button
+    id="menu-toggle"
+    class="menu-toggle"
+    type="button"
+    aria-label="Toggle navigation menu"
+    aria-expanded="false"
+  >
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
   <nav class="nav" aria-label="Primary">
     <ol>
       {
@@ -17,35 +28,94 @@ import ThemeToggle from './ThemeToggle.astro';
         ))
       }
     </ol>
+    <div class="nav-theme-mobile">
+      <ThemeToggle />
+    </div>
   </nav>
-  <ThemeToggle />
+  <div class="theme-toggle-desktop">
+    <ThemeToggle />
+  </div>
 </header>
 
 <style>
+  /*
+   * backdrop-filter on .header itself would make it a containing block for
+   * fixed-position descendants, trapping the mobile nav drawer inside the
+   * header's own height. Put the blur on a ::before layer instead.
+   */
   .header {
     position: sticky;
     top: 0;
-    z-index: 20;
+    z-index: 30;
     display: flex;
     align-items: center;
     gap: 1.5rem;
     height: var(--nav-height);
     padding: 0 clamp(1.25rem, 5vw, 3rem);
-    background: color-mix(in srgb, var(--bg) 85%, transparent);
-    backdrop-filter: blur(8px);
     border-bottom: 1px solid transparent;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: color-mix(in srgb, var(--bg) 78%, transparent);
+    backdrop-filter: blur(10px);
   }
 
   .logo {
     font-family: var(--font-mono);
-    color: var(--accent);
-    font-weight: 600;
-    font-size: 1.25rem;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 800;
+    font-size: 1.35rem;
+    z-index: 2;
+  }
+
+  .menu-toggle {
+    display: none;
+    margin-left: auto;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 2.25rem;
+    height: 2.25rem;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    z-index: 41;
+  }
+
+  .menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--text-bright);
+    border-radius: 2px;
+    transition:
+      transform 0.3s var(--ease),
+      opacity 0.3s var(--ease);
+  }
+
+  .menu-toggle[aria-expanded='true'] span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .menu-toggle[aria-expanded='true'] span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle[aria-expanded='true'] span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
   }
 
   .nav {
     margin-left: auto;
-    overflow-x: auto;
+    display: flex;
+    align-items: center;
   }
 
   .nav ol {
@@ -61,22 +131,83 @@ import ThemeToggle from './ThemeToggle.astro';
 
   .nav a {
     color: var(--text);
+    position: relative;
+    padding-bottom: 2px;
   }
 
-  .nav a:hover {
-    color: var(--accent);
+  .nav a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 0;
+    height: 2px;
+    background: var(--gradient);
+    transition: width 0.3s var(--ease);
+  }
+
+  .nav a:hover,
+  .nav a.active {
+    color: var(--text-bright);
+  }
+
+  .nav a:hover::after,
+  .nav a.active::after {
+    width: 100%;
   }
 
   .nav-index {
     color: var(--accent);
   }
 
+  .nav-theme-mobile {
+    display: none;
+  }
+
+  .theme-toggle-desktop {
+    margin-left: 0.5rem;
+  }
+
   @media (max-width: 640px) {
-    .nav-index {
+    .menu-toggle {
+      display: flex;
+    }
+
+    .theme-toggle-desktop {
       display: none;
     }
+
+    .nav {
+      position: fixed;
+      inset: 0 0 0 30%;
+      z-index: 40;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: var(--bg-elevated);
+      box-shadow: var(--shadow);
+      transform: translateX(100%);
+      transition: transform 0.4s var(--ease);
+    }
+
+    .nav.nav-open {
+      transform: translateX(0);
+    }
+
     .nav ol {
-      gap: 1.1rem;
+      flex-direction: column;
+      gap: 2rem;
+      font-size: 1.1rem;
+      padding: 0 2.5rem;
+    }
+
+    .nav-index {
+      margin-right: 0.4rem;
+    }
+
+    .nav-theme-mobile {
+      display: block;
+      padding: 2.5rem 2.5rem 0;
     }
   }
 </style>

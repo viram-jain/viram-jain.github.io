@@ -9,12 +9,12 @@ const { title, buttonText } = contact.data;
 ---
 
 <section id="contact" class="contact">
-  <p class="eyebrow">04. What's Next?</p>
-  <h2>{title}</h2>
-  <div class="contact-copy">
+  <p class="eyebrow reveal">04. What's Next?</p>
+  <h2 class="reveal" style="--reveal-delay: 0.06s"><span class="gradient-text">{title}</span></h2>
+  <div class="contact-copy reveal" style="--reveal-delay: 0.12s">
     <Content />
   </div>
-  <a class="cta" href={`mailto:${site.email}`}>{buttonText}</a>
+  <a class="cta reveal" style="--reveal-delay: 0.18s" href={`mailto:${site.email}`}>{buttonText}</a>
 </section>
 
 <style>
@@ -39,17 +39,35 @@ const { title, buttonText } = contact.data;
   }
 
   .cta {
+    position: relative;
     display: inline-block;
     margin-top: 2.5rem;
     padding: 1rem 1.75rem;
     border: 1px solid var(--accent);
-    border-radius: 4px;
-    color: var(--accent);
+    border-radius: 6px;
+    color: var(--text-bright);
     font-family: var(--font-mono);
     font-size: 0.9rem;
+    overflow: hidden;
+    z-index: 0;
+    transition: border-color 0.35s var(--ease);
+  }
+
+  .cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gradient);
+    transform: translateX(-101%);
+    transition: transform 0.35s var(--ease);
+    z-index: -1;
   }
 
   .cta:hover {
-    background: var(--accent-dim);
+    border-color: transparent;
+  }
+
+  .cta:hover::before {
+    transform: translateX(0);
   }
 </style>

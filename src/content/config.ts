@@ -25,18 +25,6 @@ const projects = defineCollection({
     }),
 });
 
-const posts = defineCollection({
-  type: 'content',
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    date: z.coerce.date(),
-    draft: z.boolean().default(false),
-    permalink: z.string(),
-    tags: z.array(z.string()).default([]),
-  }),
-});
-
 const site = defineCollection({
   type: 'content',
   schema: ({ image }) =>
@@ -50,4 +38,4 @@ const site = defineCollection({
     }),
 });
 
-export const collections = { jobs, projects, posts, site };
+export const collections = { jobs, projects, site };

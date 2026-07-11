@@ -16,11 +16,11 @@ const rendered = await Promise.all(
 ---
 
 <section id="projects" class="projects">
-  <h2 class="section-heading" data-number="03.">Things I've Built</h2>
+  <h2 class="section-heading reveal" data-number="03.">Things I've Built</h2>
   <div class="project-grid">
     {
-      rendered.map(({ project, Content }) => (
-        <article class="project-card">
+      rendered.map(({ project, Content }, i) => (
+        <article class="project-card reveal" style={`--reveal-delay: ${i * 0.08}s`}>
           <div class="project-cover">
             <Image src={project.data.cover} alt={project.data.title} width={640} height={360} />
           </div>
@@ -64,14 +64,24 @@ const rendered = await Promise.all(
   .project-card {
     background: var(--bg-elevated);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: 10px;
     padding: 1.75rem;
     display: flex;
     flex-direction: column;
+    transition:
+      transform 0.4s var(--ease),
+      border-color 0.4s var(--ease),
+      box-shadow 0.4s var(--ease);
+  }
+
+  .project-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent);
+    box-shadow: var(--shadow);
   }
 
   .project-cover {
-    border-radius: 6px;
+    border-radius: 8px;
     overflow: hidden;
     margin: -1.75rem -1.75rem 1.25rem;
   }
@@ -80,6 +90,11 @@ const rendered = await Promise.all(
     display: block;
     width: 100%;
     height: auto;
+    transition: transform 0.5s var(--ease);
+  }
+
+  .project-card:hover .project-cover :global(img) {
+    transform: scale(1.06);
   }
 
   .project-top {
@@ -95,8 +110,16 @@ const rendered = await Promise.all(
     color: var(--text-dim);
   }
 
+  .project-links a {
+    transition:
+      color 0.25s ease,
+      transform 0.25s ease;
+    display: inline-flex;
+  }
+
   .project-links a:hover {
     color: var(--accent);
+    transform: translateY(-2px);
   }
 
   h3 {

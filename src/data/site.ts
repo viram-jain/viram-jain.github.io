@@ -9,13 +9,12 @@ export const site = {
   social: [
     { name: 'GitHub', url: 'https://github.com/viram-jain' },
     { name: 'LinkedIn', url: 'https://www.linkedin.com/in/viram-jain/' },
-    { name: 'Instagram', url: 'https://www.instagram.com/virujain9799' },
+    { name: 'Instagram', url: 'https://www.instagram.com/viramvardhan9' },
   ],
   nav: [
     { name: 'About', url: '/#about' },
     { name: 'Experience', url: '/#jobs' },
     { name: 'Projects', url: '/#projects' },
-    { name: 'Blog', url: '/blog' },
     { name: 'Contact', url: '/#contact' },
   ],
 };
