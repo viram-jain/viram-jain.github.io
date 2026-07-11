@@ -1,6 +1,6 @@
 import FadeIn from './components/FadeIn';
 import AnimatedText from './components/AnimatedText';
-import { QuillIcon } from './components/decorations/ChapterIcons';
+import { QuillIcon, BookIcon } from './components/decorations/ChapterIcons';
 
 interface AboutSectionProps {
   heading: string;
@@ -18,6 +18,10 @@ export default function AboutSection({ heading, bio, quote, idleTruths = [] }: A
       <QuillIcon
         size={200}
         className="pointer-events-none absolute -left-10 top-10 opacity-[0.08] sm:left-0 md:left-6"
+      />
+      <BookIcon
+        size={180}
+        className="pointer-events-none absolute -right-10 bottom-10 opacity-[0.08] sm:right-0 md:right-6"
       />
 
       <FadeIn

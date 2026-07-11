@@ -69,6 +69,20 @@ export function CauldronIcon({ size = 160, className }: IconProps) {
   );
 }
 
+export function FilmReelIcon({ size = 160, className }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 100 100" className={className} aria-hidden="true" {...base}>
+      <circle cx="50" cy="50" r="38" />
+      <circle cx="50" cy="50" r="8" />
+      <circle cx="50" cy="24" r="9" opacity="0.6" />
+      <circle cx="74.5" cy="41" r="9" opacity="0.6" />
+      <circle cx="65" cy="70.5" r="9" opacity="0.6" />
+      <circle cx="35" cy="70.5" r="9" opacity="0.6" />
+      <circle cx="25.5" cy="41" r="9" opacity="0.6" />
+    </svg>
+  );
+}
+
 export function WandIcon({ size = 160, className }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 100 100" className={className} aria-hidden="true" {...base}>

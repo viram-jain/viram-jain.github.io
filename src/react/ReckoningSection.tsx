@@ -28,7 +28,7 @@ export default function ReckoningSection({ rolesCount }: ReckoningSectionProps) 
           className="mt-4 font-black leading-tight"
           style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.75rem, 5vw, 3rem)', color: 'var(--text-bright)' }}
         >
-          Bugs taught me how systems break. Building lets me make ones that don&apos;t.
+          Bugs taught me how systems break. Building lets me write endings that hold.
         </FadeIn>
         <FadeIn
           as="p"

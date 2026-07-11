@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import GhostButton from './components/GhostButton';
+import { FilmReelIcon } from './components/decorations/ChapterIcons';
 
 export interface ProjectItem {
   order: number;
@@ -60,8 +61,8 @@ function ProjectCard({ project, index, total }: { project: ProjectItem; index: n
         <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
           {(
             [
-              ['Problem', project.problem],
-              ['Approach', project.approach],
+              ['Premise', project.problem],
+              ['Plot Twist', project.approach],
             ] as const
           ).map(([label, text]) => (
             <div key={label}>
@@ -81,7 +82,7 @@ function ProjectCard({ project, index, total }: { project: ProjectItem; index: n
             style={{ borderColor: 'var(--accent)', background: 'var(--bg-elevated)' }}
           >
             <p className="font-mono text-xs uppercase tracking-widest" style={{ color: 'var(--accent)' }}>
-              Result
+              Reception
             </p>
             <p
               className="mt-1 font-light leading-snug"
@@ -110,9 +111,10 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
   return (
     <section
       id="artifacts"
-      className="relative z-10 -mt-10 rounded-t-[40px] px-5 py-20 sm:-mt-12 sm:rounded-t-[50px] sm:px-8 sm:py-24 md:-mt-14 md:rounded-t-[60px] md:px-10 md:py-32"
+      className="relative z-10 -mt-10 overflow-hidden rounded-t-[40px] px-5 py-20 sm:-mt-12 sm:rounded-t-[50px] sm:px-8 sm:py-24 md:-mt-14 md:rounded-t-[60px] md:px-10 md:py-32"
       style={{ background: 'var(--bg)' }}
     >
+      <FilmReelIcon size={180} className="pointer-events-none absolute -left-10 top-16 opacity-[0.07] sm:left-0" />
       <p className="text-center font-mono text-xs uppercase tracking-[0.3em]" style={{ color: 'var(--accent)' }}>
         Chapter V
       </p>
@@ -120,9 +122,9 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
         className="hero-heading mb-16 mt-4 text-center font-black uppercase leading-none tracking-tight sm:mb-20 md:mb-28"
         style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(3rem, 12vw, 160px)' }}
       >
-        Apprentice Artifacts
+        The Screening Room
       </h2>
-      <div className="mx-auto max-w-5xl">
+      <div className="relative mx-auto max-w-5xl">
         {projects.map((p, i) => (
           <ProjectCard key={p.title} project={p} index={i} total={projects.length} />
         ))}

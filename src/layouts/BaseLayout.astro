@@ -35,6 +35,8 @@ const { title = site.title, description = site.description } = Astro.props;
   </head>
   <body>
     <slot />
+    <div class="vignette-overlay" aria-hidden="true"></div>
+    <div class="grain-overlay" aria-hidden="true"></div>
     <script>
       document.addEventListener('click', (e) => {
         const btn = (e.target as HTMLElement)?.closest('[data-theme-toggle]');

@@ -1,7 +1,7 @@
 export const site = {
   title: 'Viram — Software Wizard',
   description:
-    'Viram Jain is a Software Engineer at Fyno, who loves learning new things and building across mobile and backend platforms.',
+    'Viram Jain is a Software Engineer at Fyno who treats code like a good story — solid structure, no plot holes — and disappears into a book or a film the moment he clocks out.',
   url: 'https://viramjain.com',
   name: 'Viram Jain',
   location: 'Bangalore, India',
@@ -15,7 +15,7 @@ export const site = {
     { name: 'Origin', url: '/#origin' },
     { name: 'Chronicle', url: '/#chronicle' },
     { name: 'Grimoire', url: '/#grimoire' },
-    { name: 'Artifacts', url: '/#artifacts' },
+    { name: 'Screenings', url: '/#artifacts' },
     { name: 'Contact', url: '/#contact' },
   ],
 };

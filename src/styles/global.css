@@ -39,10 +39,15 @@
   --gradient-hero: linear-gradient(180deg, #f4d675 0%, #c9a7f0 60%, #8b6fd6 100%);
 
   --shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.7);
+
+  /* Screening-room mood: film grain + vignette for the dark theme */
+  --grain-opacity: 0.05;
+  --grain-blend: overlay;
+  --vignette: radial-gradient(ellipse at 50% 45%, transparent 45%, rgba(0, 0, 0, 0.6) 100%);
 }
 
 :root[data-theme='light'] {
-  /* Parchment (light) */
+  /* Parchment (light) — the Reading Room */
   color-scheme: light;
   --bg: #f3e9d2;
   --bg-elevated: #fbf4e4;
@@ -59,6 +64,11 @@
   --gradient-hero: linear-gradient(180deg, #7a5a12 0%, #5b3a8e 100%);
 
   --shadow: 0 20px 60px -24px rgba(58, 44, 26, 0.25);
+
+  /* Paper grain instead of film grain — same texture trick, warmer + fainter */
+  --grain-opacity: 0.035;
+  --grain-blend: multiply;
+  --vignette: radial-gradient(ellipse at 50% 45%, transparent 55%, rgba(58, 44, 26, 0.14) 100%);
 }
 
 @media (prefers-color-scheme: light) {
@@ -79,6 +89,10 @@
     --gradient-hero: linear-gradient(180deg, #7a5a12 0%, #5b3a8e 100%);
 
     --shadow: 0 20px 60px -24px rgba(58, 44, 26, 0.25);
+
+    --grain-opacity: 0.035;
+    --grain-blend: multiply;
+    --vignette: radial-gradient(ellipse at 50% 45%, transparent 55%, rgba(58, 44, 26, 0.14) 100%);
   }
 }
 
@@ -288,6 +302,27 @@ img {
   50% {
     opacity: 1;
   }
+}
+
+/* The Screening Room (dark) gets film grain + a vignette; the Reading Room
+   (light) gets the same trick tuned into paper grain — same mechanism, two
+   moods, driven entirely by the --grain-*/--vignette theme variables above. */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  mix-blend-mode: var(--grain-blend);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.vignette-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 61;
+  pointer-events: none;
+  background: var(--vignette);
 }
 
 @media (prefers-reduced-motion: reduce) {
