@@ -16,9 +16,10 @@ function Chip({ label }: { label: string }) {
       style={{
         background: 'var(--bg-elevated)',
         border: '1px solid var(--border)',
-        color: '#D7E2EA',
+        color: 'var(--accent)',
         fontFamily: 'var(--font-mono)',
         fontSize: 'clamp(0.9rem, 1.6vw, 1.2rem)',
+        boxShadow: '0 0 20px -12px var(--accent)',
       }}
     >
       {label}

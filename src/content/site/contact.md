@@ -1,6 +1,6 @@
 ---
-title: 'Get In Touch'
-buttonText: 'Mail Me'
+title: 'Summon the Wizard'
+buttonText: 'Cast a Message'
 ---
 
-My inbox is always open. Whether you have a question or just want to say hello, I'll try my best to get back to you!
+My inbox is always open. Whether you've got a gnarly problem or just want to say hello, I'll get back to you.

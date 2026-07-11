@@ -10,8 +10,10 @@ export default function GhostButton({ href, label = 'Live Project', className = 
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-block whitespace-nowrap rounded-full border-2 px-8 py-3 text-sm font-medium uppercase tracking-widest transition-colors duration-300 hover:bg-[#D7E2EA]/10 sm:px-10 sm:py-3.5 sm:text-base ${className}`}
-      style={{ borderColor: '#D7E2EA', color: '#D7E2EA' }}
+      className={`inline-block whitespace-nowrap rounded-full border-2 px-8 py-3 text-sm font-medium uppercase tracking-widest transition-colors duration-300 ${className}`}
+      style={{ borderColor: 'var(--text)', color: 'var(--text)' }}
+      onMouseEnter={(e) => (e.currentTarget.style.background = 'var(--accent-dim)')}
+      onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
     >
       {label}
     </a>

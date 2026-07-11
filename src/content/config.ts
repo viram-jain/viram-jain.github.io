@@ -18,7 +18,9 @@ const projects = defineCollection({
     z.object({
       order: z.number(),
       title: z.string(),
-      description: z.string(),
+      problem: z.string(),
+      approach: z.string(),
+      result: z.string(),
       cover: image(),
       github: z.string().url().optional(),
       external: z.string().url().optional(),
@@ -36,6 +38,8 @@ const site = defineCollection({
     buttonText: z.string().optional(),
     skills: z.array(z.string()).optional(),
     bio: z.string().optional(),
+    quote: z.string().optional(),
+    idleTruths: z.array(z.string()).optional(),
   }),
 });
 

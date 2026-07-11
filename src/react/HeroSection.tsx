@@ -23,7 +23,7 @@ export default function HeroSection({ eyebrow, name, tagline, buttonText, email,
         className="pointer-events-none absolute -right-[10%] -top-[10%] h-[560px] w-[560px] opacity-20 blur-[70px]"
         style={{
           background:
-            'radial-gradient(circle at 30% 30%, #8b7bff, transparent 60%), radial-gradient(circle at 70% 70%, #29d6e8, transparent 60%)',
+            'radial-gradient(circle at 30% 30%, var(--accent), transparent 60%), radial-gradient(circle at 70% 70%, var(--accent-2), transparent 60%)',
           animation: 'blob-float 16s ease-in-out infinite',
         }}
       />
@@ -33,7 +33,7 @@ export default function HeroSection({ eyebrow, name, tagline, buttonText, email,
       <div className="flex flex-1 flex-col justify-center px-6 md:px-10">
         <p
           className="mb-1 font-medium uppercase tracking-wider"
-          style={{ color: '#D7E2EA', fontFamily: 'var(--font-mono)', fontSize: 'clamp(0.9rem, 2vw, 1.4rem)' }}
+          style={{ color: 'var(--text)', fontFamily: 'var(--font-mono)', fontSize: 'clamp(0.9rem, 2vw, 1.4rem)' }}
         >
           {eyebrow}
         </p>
@@ -59,7 +59,7 @@ export default function HeroSection({ eyebrow, name, tagline, buttonText, email,
           delay={0.35}
           y={20}
           className="max-w-[160px] font-light uppercase leading-snug tracking-wide sm:max-w-[220px] md:max-w-[260px]"
-          style={{ color: '#D7E2EA', fontSize: 'clamp(0.75rem, 1.4vw, 1.5rem)' }}
+          style={{ color: 'var(--text)', fontSize: 'clamp(0.75rem, 1.4vw, 1.5rem)' }}
         >
           {tagline}
         </FadeIn>

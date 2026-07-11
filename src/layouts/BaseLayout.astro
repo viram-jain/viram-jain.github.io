@@ -24,8 +24,29 @@ const { title = site.title, description = site.description } = Astro.props;
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary" />
     <link rel="canonical" href={new URL(Astro.url.pathname, site.url).toString()} />
+    <script is:inline>
+      (function () {
+        var stored = localStorage.getItem('theme');
+        if (stored === 'dark' || stored === 'light') {
+          document.documentElement.setAttribute('data-theme', stored);
+        }
+      })();
+    </script>
   </head>
   <body>
     <slot />
+    <script>
+      document.addEventListener('click', (e) => {
+        const btn = (e.target as HTMLElement)?.closest('[data-theme-toggle]');
+        if (!btn) return;
+        const root = document.documentElement;
+        const current =
+          root.getAttribute('data-theme') ||
+          (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        const next = current === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+      });
+    </script>
   </body>
 </html>

@@ -4,40 +4,82 @@
 @import '@fontsource/inter/800.css';
 @import '@fontsource/jetbrains-mono/400.css';
 @import '@fontsource/jetbrains-mono/500.css';
-@import '@fontsource/kanit/300.css';
-@import '@fontsource/kanit/400.css';
-@import '@fontsource/kanit/500.css';
-@import '@fontsource/kanit/600.css';
-@import '@fontsource/kanit/700.css';
-@import '@fontsource/kanit/800.css';
-@import '@fontsource/kanit/900.css';
+@import '@fontsource/cinzel/400.css';
+@import '@fontsource/cinzel/500.css';
+@import '@fontsource/cinzel/600.css';
+@import '@fontsource/cinzel/700.css';
+@import '@fontsource/cinzel/900.css';
+@import '@fontsource/eb-garamond/400.css';
+@import '@fontsource/eb-garamond/400-italic.css';
+@import '@fontsource/eb-garamond/500.css';
+@import '@fontsource/eb-garamond/600.css';
 
 :root {
   --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
-  --font-display: 'Kanit', sans-serif;
+  --font-display: 'Cinzel', serif;
+  --font-quote: 'EB Garamond', serif;
 
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
 
+  /* Midnight grimoire (dark, default) */
   color-scheme: dark;
-  --bg: #0c0c0c;
-  --bg-elevated: #161616;
-  --bg-elevated-2: #1f1f1f;
-  --text: #d7e2ea;
-  --text-dim: #8a8daf;
-  --text-bright: #f3f3fb;
-  --border: rgba(215, 226, 234, 0.14);
+  --bg: #0f0c1a;
+  --bg-elevated: #1a1628;
+  --bg-elevated-2: #241f36;
+  --text: #e8e1f0;
+  --text-dim: #9d94b5;
+  --text-bright: #f5f0fa;
+  --border: rgba(212, 175, 55, 0.18);
 
-  /* Brand accent (buttons, links, highlights) */
-  --accent: #8b7bff;
-  --accent-2: #29d6e8;
-  --accent-dim: rgba(139, 123, 255, 0.14);
+  --accent: #d4af37;
+  --accent-2: #8b5cf6;
+  --accent-dim: rgba(212, 175, 55, 0.14);
   --gradient: linear-gradient(135deg, var(--accent), var(--accent-2));
+  --gradient-hero: linear-gradient(180deg, #f4d675 0%, #c9a7f0 60%, #8b6fd6 100%);
 
-  /* Cool gray -> ice-blue gradient, used only for giant hero-style headings on dark backgrounds */
-  --gradient-hero: linear-gradient(180deg, #646973 0%, #bbccd7 100%);
+  --shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.7);
+}
 
-  --shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.6);
+:root[data-theme='light'] {
+  /* Parchment (light) */
+  color-scheme: light;
+  --bg: #f3e9d2;
+  --bg-elevated: #fbf4e4;
+  --bg-elevated-2: #ecdfc2;
+  --text: #3a2c1a;
+  --text-dim: #6b5738;
+  --text-bright: #241a0d;
+  --border: rgba(58, 44, 26, 0.18);
+
+  --accent: #96731a;
+  --accent-2: #6b3fa0;
+  --accent-dim: rgba(150, 115, 26, 0.12);
+  --gradient: linear-gradient(135deg, var(--accent), var(--accent-2));
+  --gradient-hero: linear-gradient(180deg, #7a5a12 0%, #5b3a8e 100%);
+
+  --shadow: 0 20px 60px -24px rgba(58, 44, 26, 0.25);
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']):not([data-theme='light']) {
+    color-scheme: light;
+    --bg: #f3e9d2;
+    --bg-elevated: #fbf4e4;
+    --bg-elevated-2: #ecdfc2;
+    --text: #3a2c1a;
+    --text-dim: #6b5738;
+    --text-bright: #241a0d;
+    --border: rgba(58, 44, 26, 0.18);
+
+    --accent: #96731a;
+    --accent-2: #6b3fa0;
+    --accent-dim: rgba(150, 115, 26, 0.12);
+    --gradient: linear-gradient(135deg, var(--accent), var(--accent-2));
+    --gradient-hero: linear-gradient(180deg, #7a5a12 0%, #5b3a8e 100%);
+
+    --shadow: 0 20px 60px -24px rgba(58, 44, 26, 0.25);
+  }
 }
 
 * {
@@ -62,6 +104,9 @@ body {
   font-family: var(--font-sans);
   font-size: 1rem;
   line-height: 1.6;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 h1,
@@ -71,7 +116,7 @@ h4 {
   color: var(--text-bright);
   font-weight: 700;
   line-height: 1.1;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
 }
 
 a {
@@ -107,18 +152,9 @@ img {
   border: 0;
 }
 
-/* Giant gradient headings on dark sections (Hero, About, Experience, Projects) */
+/* Giant gradient chapter headings, theme-aware via --gradient-hero */
 .hero-heading {
   background: var(--gradient-hero);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-}
-
-/* Same treatment, dark-on-light variant for the "What I Do" white panel */
-.hero-heading-dark {
-  background: linear-gradient(180deg, #0c0c0c 0%, #3a3f47 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -132,6 +168,14 @@ img {
   background-clip: text;
   color: transparent;
   animation: gradient-shift 8s ease infinite;
+}
+
+/* Pull-quote treatment, used for the Clarke's-Law line in Chapter I */
+.pull-quote {
+  font-family: var(--font-quote);
+  font-style: italic;
+  border-left: 3px solid var(--accent);
+  padding-left: 1.5rem;
 }
 
 @keyframes gradient-shift {
@@ -157,14 +201,92 @@ img {
   }
 }
 
-@keyframes blink {
-  0%,
-  49% {
-    opacity: 1;
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition:
+    color 0.3s var(--ease),
+    border-color 0.3s var(--ease),
+    transform 0.3s var(--ease);
+}
+
+.theme-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  transform: rotate(-12deg);
+}
+
+.icon-moon {
+  display: none;
+}
+
+:root[data-theme='light'] .icon-sun {
+  display: none;
+}
+
+:root[data-theme='light'] .icon-moon {
+  display: block;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) .icon-sun {
+    display: none;
   }
-  50%,
+  :root:not([data-theme='dark']) .icon-moon {
+    display: block;
+  }
+}
+
+.scroll-trail {
+  position: fixed;
+  left: 1.5rem;
+  top: 10vh;
+  bottom: 10vh;
+  width: 2px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.scroll-trail-line {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, var(--accent), var(--accent-2));
+  opacity: 0.25;
+  border-radius: 999px;
+}
+
+.scroll-trail-marker {
+  position: absolute;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 12px 3px var(--accent-dim), 0 0 4px 1px var(--accent);
+  transform: translate(-50%, -50%);
+}
+
+@media (max-width: 900px) {
+  .scroll-trail {
+    display: none;
+  }
+}
+
+@keyframes flicker {
+  0%,
   100% {
-    opacity: 0;
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 1;
   }
 }
 

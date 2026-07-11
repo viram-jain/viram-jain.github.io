@@ -12,9 +12,10 @@ export const site = {
     { name: 'Instagram', url: 'https://www.instagram.com/viramvardhan9' },
   ],
   nav: [
-    { name: 'About', url: '/#about' },
-    { name: 'Experience', url: '/#jobs' },
-    { name: 'Projects', url: '/#projects' },
+    { name: 'Origin', url: '/#origin' },
+    { name: 'Chronicle', url: '/#chronicle' },
+    { name: 'Grimoire', url: '/#grimoire' },
+    { name: 'Artifacts', url: '/#artifacts' },
     { name: 'Contact', url: '/#contact' },
   ],
 };

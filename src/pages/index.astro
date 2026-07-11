@@ -6,10 +6,12 @@ import Footer from '../components/Footer.astro';
 import HeroSection from '../react/HeroSection';
 import TechMarquee from '../react/TechMarquee';
 import AboutSection from '../react/AboutSection';
+import ReckoningSection from '../react/ReckoningSection';
 import ExperienceSection from '../react/ExperienceSection';
 import WhatIDoSection from '../react/WhatIDoSection';
 import ProjectsSection from '../react/ProjectsSection';
 import ContactSection from '../react/ContactSection';
+import ScrollTrail from '../react/ScrollTrail';
 import { site } from '../data/site';
 import { whatIDo } from '../data/whatIDo';
 
@@ -45,10 +47,12 @@ const projects = await Promise.all(
       return {
         order: project.data.order,
         title: project.data.title,
-        description: project.data.description,
+        problem: project.data.problem,
+        approach: project.data.approach,
+        result: project.data.result,
         cover: cover.src,
         github: project.data.github,
-        category: 'College Project',
+        category: 'Apprentice Artifact',
         tech: project.data.tech,
       };
     })
@@ -56,6 +60,7 @@ const projects = await Promise.all(
 ---
 
 <BaseLayout>
+  <ScrollTrail client:load />
   <main>
     <HeroSection
       client:load
@@ -71,9 +76,10 @@ const projects = await Promise.all(
       client:visible
       heading={aboutEntry.data.title}
       bio={aboutEntry.data.bio ?? ''}
-      email={site.email}
-      buttonText={heroEntry.data.buttonText ?? 'Contact Me'}
+      quote={aboutEntry.data.quote}
+      idleTruths={aboutEntry.data.idleTruths}
     />
+    <ReckoningSection client:visible rolesCount={jobs.length} />
     <ExperienceSection client:visible jobs={jobs} />
     <WhatIDoSection client:visible items={whatIDo} />
     <ProjectsSection client:visible projects={projects} />
