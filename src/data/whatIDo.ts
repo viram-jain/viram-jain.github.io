@@ -9,30 +9,30 @@ export const whatIDo: WhatIDoItem[] = [
     number: '01',
     name: 'Backend Engineering',
     description:
-      'Building and testing Golang based microservices and APIs, from billing systems to conversational AI pipelines, at Kaleyra and Radisys.',
+      'Rewriting PHP into Golang, building ad-serving pipelines, and generally making backend services faster without waking anyone up at 2am.',
   },
   {
     number: '02',
     name: 'Mobile SDK Development',
     description:
-      'Designing and maintaining client SDKs across React Native, Flutter, Kotlin (Android), and Swift (iOS) for developers to integrate into their own apps.',
+      'Designing and maintaining Push and In-App SDKs across React Native, Flutter, Kotlin, and Swift — the kind of code that has to work everywhere, always.',
   },
   {
     number: '03',
     name: 'Cross-Platform Apps',
     description:
-      'Shipping product experiences that share logic across mobile and web, keeping behavior consistent without duplicating work per platform.',
+      "Shipping product experiences that share logic across mobile and web, so 'it works on iOS' doesn't turn into a support ticket on Android.",
   },
   {
     number: '04',
     name: 'Systems & Caching',
     description:
-      'Working with Redis/ElastiCache and backend infrastructure to keep services fast and reliable under real-world load.',
+      'Working with Redis/ElastiCache and backend infrastructure to keep services fast under real load, not just in the demo.',
   },
   {
     number: '05',
-    name: 'Full-Stack Prototyping',
+    name: 'Monitoring & Observability',
     description:
-      'Going from idea to working prototype with Node.js, Python, and Django — the muscle behind projects like Voice Based Email and Fake Currency Detection.',
+      "Building the alarms and anomaly detection that catches problems before they become incidents, or angry Slack messages.",
   },
 ];

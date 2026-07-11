@@ -5,7 +5,7 @@ company: 'Kaleyra'
 range: 'March 2021 - June 2021'
 url: 'https://www.kaleyra.com/'
 highlights:
-  - 'Worked on DLT (Real time project).'
-  - 'Received training on the MERN stack from Crio.'
-  - 'Developed Qkart as part of the learning program.'
+  - "Worked on DLT (a real-time project) — my first taste of systems where 'eventually consistent' isn't a joke."
+  - 'Got MERN-stack training from Crio and came out the other side actually liking JavaScript.'
+  - 'Built Qkart, a mini e-commerce app, as part of the program.'
 ---

@@ -87,7 +87,7 @@ export default function ProjectsSection({ projects }: ProjectsSectionProps) {
         className="hero-heading mb-16 text-center font-black uppercase leading-none tracking-tight sm:mb-20 md:mb-28"
         style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(3rem, 12vw, 160px)' }}
       >
-        Project
+        College Projects
       </h2>
       <div className="mx-auto max-w-5xl">
         {projects.map((p, i) => (

@@ -29,16 +29,14 @@ const projects = defineCollection({
 
 const site = defineCollection({
   type: 'content',
-  schema: ({ image }) =>
-    z.object({
-      title: z.string(),
-      name: z.string().optional(),
-      subtitle: z.string().optional(),
-      buttonText: z.string().optional(),
-      avatar: image().optional(),
-      skills: z.array(z.string()).optional(),
-      bio: z.string().optional(),
-    }),
+  schema: z.object({
+    title: z.string(),
+    name: z.string().optional(),
+    subtitle: z.string().optional(),
+    buttonText: z.string().optional(),
+    skills: z.array(z.string()).optional(),
+    bio: z.string().optional(),
+  }),
 });
 
 export const collections = { jobs, projects, site };

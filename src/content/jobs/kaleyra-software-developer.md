@@ -5,7 +5,7 @@ company: 'Kaleyra'
 range: 'August 2021 - June 2023'
 url: 'https://www.kaleyra.com/'
 highlights:
-  - 'Involved in developing and testing Golang based microservices.'
-  - 'Was part of two major releases (Billing and Whatsapp-New-Pricing).'
-  - 'Contributed to the QA and conversational AI team.'
+  - 'Rewrote the core billing service from PHP to Golang, turning a noticeably sluggish endpoint into a near-instant one.'
+  - "Shipped two major releases — Billing and Whatsapp-New-Pricing — without becoming best friends with the rollback button."
+  - "Spent time in the QA and conversational AI trenches, learning that 'it works on my machine' is not a valid test strategy."
 ---

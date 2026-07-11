@@ -5,6 +5,6 @@ company: 'Kaleyra'
 range: 'June 2019 - August 2019'
 url: 'https://www.kaleyra.com/'
 highlights:
-  - "Developed and tested a JAVA library to consume Kaleyra's RESTful APIs."
-  - 'Gained knowledge about JSON, cloud communication, and APIs.'
+  - "Built and tested a JAVA library for consuming Kaleyra's RESTful APIs — my first real production code."
+  - 'Learned the fundamentals: JSON, cloud communication, APIs, and how many ways a request can go wrong.'
 ---

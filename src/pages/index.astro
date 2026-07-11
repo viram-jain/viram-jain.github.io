@@ -20,8 +20,6 @@ if (!heroEntry || !aboutEntry || !contactEntry) {
   throw new Error('Missing required site content entries (hero/about/contact)');
 }
 
-const avatarImage = aboutEntry.data.avatar ? await getImage({ src: aboutEntry.data.avatar }) : undefined;
-
 const skills = aboutEntry.data.skills ?? [];
 const midpoint = Math.ceil(skills.length / 2);
 const marqueeRow1 = skills.slice(0, midpoint);
@@ -50,7 +48,7 @@ const projects = await Promise.all(
         description: project.data.description,
         cover: cover.src,
         github: project.data.github,
-        category: 'Personal',
+        category: 'College Project',
         tech: project.data.tech,
       };
     })
@@ -73,7 +71,6 @@ const projects = await Promise.all(
       client:visible
       heading={aboutEntry.data.title}
       bio={aboutEntry.data.bio ?? ''}
-      avatarSrc={avatarImage?.src}
       email={site.email}
       buttonText={heroEntry.data.buttonText ?? 'Contact Me'}
     />
