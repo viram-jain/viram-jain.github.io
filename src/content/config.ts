@@ -8,6 +8,7 @@ const jobs = defineCollection({
     company: z.string(),
     range: z.string(),
     url: z.string().url(),
+    highlights: z.array(z.string()),
   }),
 });
 
@@ -17,6 +18,7 @@ const projects = defineCollection({
     z.object({
       order: z.number(),
       title: z.string(),
+      description: z.string(),
       cover: image(),
       github: z.string().url().optional(),
       external: z.string().url().optional(),
@@ -35,6 +37,7 @@ const site = defineCollection({
       buttonText: z.string().optional(),
       avatar: image().optional(),
       skills: z.array(z.string()).optional(),
+      bio: z.string().optional(),
     }),
 });
 

@@ -1,5 +1,5 @@
 export const site = {
-  title: 'Viram Jain | Software Engineer',
+  title: 'Viram — Software Wizard',
   description:
     'Viram Jain is a Software Engineer at Fyno, who loves learning new things and building across mobile and backend platforms.',
   url: 'https://viramjain.com',

@@ -1,15 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 ---
 
 <BaseLayout title="404: Not Found | Viram Jain">
-  <Header />
   <main>
     <section class="not-found">
       <p class="code">404</p>
-      <h1 class="gradient-text">Page not found</h1>
+      <h1 class="hero-heading">Page not found</h1>
       <a class="cta" href="/">Go back home</a>
     </section>
   </main>
@@ -18,9 +16,9 @@ import Footer from '../components/Footer.astro';
 
 <style>
   .not-found {
-    max-width: var(--max-width);
+    max-width: 920px;
     margin: 0 auto;
-    padding: 6rem 1.5rem;
+    padding: 8rem 1.5rem;
     text-align: center;
   }
 
@@ -33,7 +31,10 @@ import Footer from '../components/Footer.astro';
 
   h1 {
     margin: 0 0 2rem;
-    font-size: clamp(1.8rem, 6vw, 2.75rem);
+    font-family: var(--font-display);
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: clamp(2rem, 8vw, 4rem);
   }
 
   .cta {

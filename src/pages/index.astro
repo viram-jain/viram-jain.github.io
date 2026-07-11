@@ -1,26 +1,92 @@
 ---
+import { getCollection, getEntry } from 'astro:content';
+import { getImage } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header.astro';
-import SocialSidebar from '../components/SocialSidebar.astro';
-import EmailSidebar from '../components/EmailSidebar.astro';
-import Hero from '../components/Hero.astro';
-import About from '../components/About.astro';
-import Jobs from '../components/Jobs.astro';
-import Projects from '../components/Projects.astro';
-import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
+import HeroSection from '../react/HeroSection';
+import TechMarquee from '../react/TechMarquee';
+import AboutSection from '../react/AboutSection';
+import ExperienceSection from '../react/ExperienceSection';
+import WhatIDoSection from '../react/WhatIDoSection';
+import ProjectsSection from '../react/ProjectsSection';
+import ContactSection from '../react/ContactSection';
+import { site } from '../data/site';
+import { whatIDo } from '../data/whatIDo';
+
+const heroEntry = await getEntry('site', 'hero');
+const aboutEntry = await getEntry('site', 'about');
+const contactEntry = await getEntry('site', 'contact');
+if (!heroEntry || !aboutEntry || !contactEntry) {
+  throw new Error('Missing required site content entries (hero/about/contact)');
+}
+
+const avatarImage = aboutEntry.data.avatar ? await getImage({ src: aboutEntry.data.avatar }) : undefined;
+
+const skills = aboutEntry.data.skills ?? [];
+const midpoint = Math.ceil(skills.length / 2);
+const marqueeRow1 = skills.slice(0, midpoint);
+const marqueeRow2 = skills.slice(midpoint);
+
+const jobEntries = await getCollection('jobs');
+const jobs = jobEntries
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .map((job) => ({
+    title: job.data.title,
+    company: job.data.company,
+    range: job.data.range,
+    url: job.data.url,
+    highlights: job.data.highlights,
+  }));
+
+const projectEntries = await getCollection('projects', ({ data }) => data.showInProjects);
+const projects = await Promise.all(
+  projectEntries
+    .sort((a, b) => a.data.order - b.data.order)
+    .map(async (project) => {
+      const cover = await getImage({ src: project.data.cover });
+      return {
+        order: project.data.order,
+        title: project.data.title,
+        description: project.data.description,
+        cover: cover.src,
+        github: project.data.github,
+        category: 'Personal',
+        tech: project.data.tech,
+      };
+    })
+);
 ---
 
 <BaseLayout>
-  <Header />
-  <SocialSidebar />
-  <EmailSidebar />
   <main>
-    <Hero />
-    <About />
-    <Jobs />
-    <Projects />
-    <Contact />
+    <HeroSection
+      client:load
+      eyebrow={heroEntry.data.title}
+      name={heroEntry.data.name ?? site.name}
+      tagline={heroEntry.body.trim()}
+      buttonText={heroEntry.data.buttonText ?? 'Contact Me'}
+      email={site.email}
+      navItems={site.nav}
+    />
+    <TechMarquee client:visible row1={marqueeRow1} row2={marqueeRow2} />
+    <AboutSection
+      client:visible
+      heading={aboutEntry.data.title}
+      bio={aboutEntry.data.bio ?? ''}
+      avatarSrc={avatarImage?.src}
+      email={site.email}
+      buttonText={heroEntry.data.buttonText ?? 'Contact Me'}
+    />
+    <ExperienceSection client:visible jobs={jobs} />
+    <WhatIDoSection client:visible items={whatIDo} />
+    <ProjectsSection client:visible projects={projects} />
+    <ContactSection
+      client:visible
+      heading={contactEntry.data.title}
+      description={contactEntry.body.trim()}
+      email={site.email}
+      buttonText={contactEntry.data.buttonText ?? 'Mail Me'}
+    />
   </main>
   <Footer />
 </BaseLayout>
