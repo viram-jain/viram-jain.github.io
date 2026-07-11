@@ -1,0 +1,72 @@
+---
+import { site } from '../data/site';
+import IconGitHub from './icons/IconGitHub.astro';
+import IconLinkedIn from './icons/IconLinkedIn.astro';
+import IconInstagram from './icons/IconInstagram.astro';
+
+const icons: Record<string, any> = {
+  GitHub: IconGitHub,
+  LinkedIn: IconLinkedIn,
+  Instagram: IconInstagram,
+};
+---
+
+<div class="social-sidebar">
+  <ul>
+    {
+      site.social.map((s) => {
+        const Icon = icons[s.name];
+        return (
+          <li>
+            <a href={s.url} target="_blank" rel="noopener noreferrer" aria-label={s.name}>
+              <Icon />
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
+</div>
+
+<style>
+  .social-sidebar {
+    position: fixed;
+    left: clamp(1rem, 3vw, 2.5rem);
+    bottom: 0;
+    z-index: 10;
+  }
+
+  .social-sidebar ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.1rem;
+    margin: 0;
+    padding: 0 0 1.5rem;
+  }
+
+  .social-sidebar ul::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 5.5rem;
+    background: var(--text-dim);
+  }
+
+  .social-sidebar a {
+    color: var(--text-dim);
+    display: inline-flex;
+  }
+
+  .social-sidebar a:hover {
+    color: var(--accent);
+    transform: translateY(-3px);
+  }
+
+  @media (max-width: 640px) {
+    .social-sidebar {
+      display: none;
+    }
+  }
+</style>

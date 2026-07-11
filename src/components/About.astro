@@ -1,0 +1,90 @@
+---
+import { getEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+
+const about = await getEntry('site', 'about');
+if (!about) throw new Error('Missing site/about.md content entry');
+const { Content } = await about.render();
+const { title, skills, avatar } = about.data;
+---
+
+<section id="about" class="about">
+  <h2 class="section-heading" data-number="01.">{title}</h2>
+  <div class="about-grid">
+    <div class="about-copy">
+      <Content />
+      {
+        skills && skills.length > 0 && (
+          <ul class="skills">
+            {skills.map((skill) => (
+              <li>{skill}</li>
+            ))}
+          </ul>
+        )
+      }
+    </div>
+    {
+      avatar && (
+        <div class="avatar-frame">
+          <Image src={avatar} alt="Viram Jain" width={320} height={320} loading="eager" />
+        </div>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .about-grid {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .about-copy :global(a) {
+    color: var(--accent);
+  }
+
+  .about-copy :global(a:hover) {
+    text-decoration: underline;
+  }
+
+  .skills {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem 1rem;
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--text-dim);
+  }
+
+  .skills li::before {
+    content: '▹ ';
+    color: var(--accent);
+  }
+
+  .avatar-frame {
+    position: relative;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 2px solid var(--accent);
+  }
+
+  .avatar-frame :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  @media (max-width: 720px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+    }
+    .avatar-frame {
+      max-width: 260px;
+    }
+  }
+</style>

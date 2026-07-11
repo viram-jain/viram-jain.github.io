@@ -1,0 +1,82 @@
+---
+import { site } from '../data/site';
+import ThemeToggle from './ThemeToggle.astro';
+---
+
+<header class="header">
+  <a href="/" class="logo">VJ</a>
+  <nav class="nav" aria-label="Primary">
+    <ol>
+      {
+        site.nav.map((item, i) => (
+          <li>
+            <a href={item.url}>
+              <span class="nav-index">0{i + 1}.</span> {item.name}
+            </a>
+          </li>
+        ))
+      }
+    </ol>
+  </nav>
+  <ThemeToggle />
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    height: var(--nav-height);
+    padding: 0 clamp(1.25rem, 5vw, 3rem);
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid transparent;
+  }
+
+  .logo {
+    font-family: var(--font-mono);
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 1.25rem;
+  }
+
+  .nav {
+    margin-left: auto;
+    overflow-x: auto;
+  }
+
+  .nav ol {
+    list-style: none;
+    display: flex;
+    gap: 1.75rem;
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+
+  .nav a {
+    color: var(--text);
+  }
+
+  .nav a:hover {
+    color: var(--accent);
+  }
+
+  .nav-index {
+    color: var(--accent);
+  }
+
+  @media (max-width: 640px) {
+    .nav-index {
+      display: none;
+    }
+    .nav ol {
+      gap: 1.1rem;
+    }
+  }
+</style>

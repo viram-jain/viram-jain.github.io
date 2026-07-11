@@ -1,0 +1,74 @@
+---
+import { getEntry } from 'astro:content';
+
+const hero = await getEntry('site', 'hero');
+if (!hero) throw new Error('Missing site/hero.md content entry');
+const { Content } = await hero.render();
+const { title, name, subtitle, buttonText } = hero.data;
+---
+
+<section id="hero" class="hero">
+  <p class="eyebrow">{title}</p>
+  <h1>{name}</h1>
+  <h2>{subtitle}</h2>
+  <div class="hero-copy">
+    <Content />
+  </div>
+  <a class="cta" href="/#contact">{buttonText}</a>
+</section>
+
+<style>
+  .hero {
+    min-height: calc(100vh - var(--nav-height));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 2rem;
+  }
+
+  .eyebrow {
+    color: var(--accent);
+    font-family: var(--font-mono);
+    margin: 0 0 1rem;
+  }
+
+  h1 {
+    font-size: clamp(2.2rem, 8vw, 4rem);
+    margin: 0;
+  }
+
+  h2 {
+    font-size: clamp(1.5rem, 6vw, 3rem);
+    color: var(--text-dim);
+    margin: 0.5rem 0 1.5rem;
+  }
+
+  .hero-copy {
+    max-width: 540px;
+    color: var(--text-dim);
+  }
+
+  .hero-copy :global(a) {
+    color: var(--accent);
+  }
+
+  .hero-copy :global(a:hover) {
+    text-decoration: underline;
+  }
+
+  .cta {
+    display: inline-block;
+    margin-top: 2.5rem;
+    padding: 1rem 1.75rem;
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    width: fit-content;
+  }
+
+  .cta:hover {
+    background: var(--accent-dim);
+  }
+</style>

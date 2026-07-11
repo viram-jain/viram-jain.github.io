@@ -1,0 +1,55 @@
+---
+import { getEntry } from 'astro:content';
+import { site } from '../data/site';
+
+const contact = await getEntry('site', 'contact');
+if (!contact) throw new Error('Missing site/contact.md content entry');
+const { Content } = await contact.render();
+const { title, buttonText } = contact.data;
+---
+
+<section id="contact" class="contact">
+  <p class="eyebrow">04. What's Next?</p>
+  <h2>{title}</h2>
+  <div class="contact-copy">
+    <Content />
+  </div>
+  <a class="cta" href={`mailto:${site.email}`}>{buttonText}</a>
+</section>
+
+<style>
+  .contact {
+    text-align: center;
+    max-width: 600px;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    color: var(--accent);
+    margin: 0 0 1rem;
+  }
+
+  h2 {
+    font-size: clamp(1.8rem, 6vw, 3rem);
+    margin: 0 0 1.25rem;
+  }
+
+  .contact-copy {
+    color: var(--text-dim);
+  }
+
+  .cta {
+    display: inline-block;
+    margin-top: 2.5rem;
+    padding: 1rem 1.75rem;
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+  }
+
+  .cta:hover {
+    background: var(--accent-dim);
+  }
+</style>
